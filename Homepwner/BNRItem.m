@@ -98,11 +98,10 @@
 
 - (NSString *)description {
     
-    NSString *descriptionString = [[NSString alloc]initWithFormat:@"%@ (%@): Worth $%d, recorded on %@",
+    NSString *descriptionString = [[NSString alloc]initWithFormat:@"%@ (%@): Worth $%d",
                                    self.itemName,
                                    self.serialNumber,
-                                   self.valueInDollars,
-                                   self.dateCreated];
+                                   self.valueInDollars];
     return descriptionString;
 }
 
