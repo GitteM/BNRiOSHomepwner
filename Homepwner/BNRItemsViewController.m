@@ -15,9 +15,9 @@
 #pragma mark - Initializers
 
 - (instancetype)init {
-    self = [super initWithStyle:UITableViewStylePlain];
+    self = [super initWithStyle:UITableViewStyleGrouped];
     if (self) {
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 10; i++) {
             [[BNRItemStore sharedStore]createItem];
         }
     }
@@ -30,18 +30,16 @@
 
 #pragma mark - Managing the View
 - (void)viewDidLoad {
-
+    
     [super viewDidLoad];
+    
+    self.tableView.contentInset = UIEdgeInsetsMake(20.0, 0.0, 0.0, 0.0);
     
     [self.tableView registerClass:[UITableViewCell class]
            forCellReuseIdentifier:@"UITableViewCell"];
 }
 
 #pragma mark - UITableViewDataSource Protocol Required Methods
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [[[BNRItemStore sharedStore]allItems]count];
-}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
    
@@ -53,12 +51,46 @@
     // that is at the nth index of items, where n = row this cell
     // will appear on in the tableview
     
-    NSArray *items = [[BNRItemStore sharedStore]allItems];
-    BNRItem *item = items[indexPath.row];
+    if (indexPath.section == 0) {
+        NSArray *items = [[BNRItemStore sharedStore]expensiveItems];
+        BNRItem *item = items[indexPath.row];
+        cell.textLabel.text = [item description];
+    } else {
+        NSArray *items = [[BNRItemStore sharedStore]economicalItems];
+        BNRItem *item = items[indexPath.row];
+        cell.textLabel.text = [item description];
+    }
     
-    cell.textLabel.text = [item description];
+    UIFont *myFont = [ UIFont fontWithName: @"Arial" size: 14.0 ];
+    cell.textLabel.font  = myFont;
+    cell.textLabel.textColor = [UIColor darkGrayColor];
+    cell.userInteractionEnabled = NO;
     
     return cell;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    
+    if (section == 1) {
+        return [[[BNRItemStore sharedStore]economicalItems]count];
+    } else {
+        return [[[BNRItemStore sharedStore]expensiveItems]count];
+    }
+}
+
+#pragma mark - UITableViewDataSource Protocol Methods 
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    
+    return 2;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    if (section == 0) {
+        return @"Item value more than $50";
+    } else {
+        return @"Item value less than $50";
+    }
 }
 
 @end

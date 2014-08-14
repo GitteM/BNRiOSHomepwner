@@ -13,6 +13,9 @@
 
 @property (nonatomic) NSMutableArray *privateItems;
 
+@property (nonatomic) NSMutableArray *privateExpensiveItems;
+@property (nonatomic) NSMutableArray *privateEconomicalItems;
+
 @end
 
 @implementation BNRItemStore
@@ -32,6 +35,8 @@
     self = [super init];
     if (self) {
         _privateItems = [[NSMutableArray alloc]init];
+        _privateExpensiveItems = [[NSMutableArray alloc]init];
+        _privateEconomicalItems = [[NSMutableArray alloc]init];
     }
     return self;
 }
@@ -53,9 +58,34 @@
     return self.privateItems;
 }
 
+- (NSArray *)expensiveItems {
+    NSArray *sortedArray = [self sortArrayWith:self.privateExpensiveItems];
+    return sortedArray;
+}
+
+- (NSArray *)economicalItems {
+    NSArray *sortedArray = [self sortArrayWith:self.privateEconomicalItems];
+    return sortedArray;
+}
+
+- (NSArray *)sortArrayWith:(NSArray *)a {
+    NSSortDescriptor *valueDescriptor = [[NSSortDescriptor alloc] initWithKey:@"valueInDollars"
+                                                                    ascending:NO];
+    NSArray *descriptors = [NSArray arrayWithObject:valueDescriptor];
+    NSArray *sortedArray = [a sortedArrayUsingDescriptors:descriptors];
+    return sortedArray;
+}
+
 - (BNRItem *)createItem {
     BNRItem *item = [BNRItem randomItem];
     [self.privateItems addObject:item];
+    
+    if (item.valueInDollars > 50) {
+        [self.privateExpensiveItems addObject:item];
+    } else {
+        [self.privateEconomicalItems addObject:item];
+    }
+    
     return item;
 }
 

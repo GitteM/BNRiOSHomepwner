@@ -13,6 +13,9 @@
 
 @property (nonatomic, readonly) NSArray *allItems;
 
+@property (nonatomic, readonly) NSArray *expensiveItems;
+@property (nonatomic, readonly) NSArray *economicalItems;
+
 #pragma mark - Class/Convenience Methods
 
 // To get the singleton of BNRItemStore
