@@ -22,11 +22,7 @@
 
 - (instancetype)init {
     self = [super initWithStyle:UITableViewStylePlain];
-    if (self) {
-        for (int i = 0; i < 5; i++) {
-            [[BNRItemStore sharedStore]createItem];
-        }
-    }
+    if (self) {}
     return self;
 }
 
@@ -67,6 +63,17 @@
 
 - (IBAction)addNewItem:(id)sender {
     
+    // create a new BNRItem
+    BNRItem *newItem = [[BNRItemStore sharedStore]createItem];
+    
+    // figure out where that item is in the array
+    NSInteger lastrow = [[[BNRItemStore sharedStore]allItems]indexOfObject:newItem];
+    
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:lastrow inSection:0];
+    
+    // insert this new row into the table
+    [self.tableView insertRowsAtIndexPaths:@[indexPath]
+                          withRowAnimation:UITableViewRowAnimationTop];
 }
 
 - (IBAction)toggleEditingMode:(id)sender {
