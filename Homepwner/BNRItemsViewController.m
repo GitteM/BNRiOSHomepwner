@@ -70,7 +70,23 @@
 }
 
 - (IBAction)toggleEditingMode:(id)sender {
-    
+
+    if (self.isEditing) {
+        
+        // change title of the button to inform the user of state
+        [sender setTitle:@"Edit" forState:UIControlStateNormal];
+        
+        // turn off editing mode
+        [self setEditing:NO animated:YES];
+    } else {
+        
+        // change title of the button the inform the user of state
+        [sender setTitle:@"Done" forState:UIControlStateNormal];
+        
+        // enter editing mode
+        [self setEditing:YES animated:YES];
+  
+    }
 }
 
 
