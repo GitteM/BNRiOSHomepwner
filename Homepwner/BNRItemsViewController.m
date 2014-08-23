@@ -10,6 +10,12 @@
 #import "BNRItemStore.h"
 #import "BNRItem.h"
 
+@interface BNRItemsViewController ()
+
+@property (nonatomic, strong) IBOutlet UIView *headerView;
+
+@end
+
 @implementation BNRItemsViewController
 
 #pragma mark - Initializers
@@ -35,7 +41,38 @@
     
     [self.tableView registerClass:[UITableViewCell class]
            forCellReuseIdentifier:@"UITableViewCell"];
+    
+    UIView *headerView = self.headerView;
+    [self.tableView setTableHeaderView:headerView];
 }
+
+#pragma mark - Implement HeaderView
+
+- (UIView *)headerView {
+    
+    // if you not have loaded the header yet
+    
+    if (!_headerView) {
+        
+        // load HeaderView.xib
+        [[NSBundle mainBundle] loadNibNamed:@"HeaderView"
+                                      owner:self
+                                    options:nil];
+    }
+    
+    return _headerView;
+}
+
+#pragma mark - Header Methods
+
+- (IBAction)addNewItem:(id)sender {
+    
+}
+
+- (IBAction)toggleEditingMode:(id)sender {
+    
+}
+
 
 #pragma mark - UITableViewDataSource Protocol Required Methods
 
