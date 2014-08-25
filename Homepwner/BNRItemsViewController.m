@@ -101,7 +101,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView
  numberOfRowsInSection:(NSInteger)section {
-    return [[[BNRItemStore sharedStore]allItems]count];
+    return [[[BNRItemStore sharedStore]allItems]count] + 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
@@ -116,10 +116,13 @@
     // that is at the nth index of items, where n = row this cell
     // will appear on in the tableview
     
+    if (indexPath.row == [[[BNRItemStore sharedStore]allItems]count]) {
+         cell.textLabel.text = @"No more items!";
+    } else {
     NSArray *items = [[BNRItemStore sharedStore]allItems];
     BNRItem *item = items[indexPath.row];
-    
     cell.textLabel.text = [item description];
+    }
     
     return cell;
 }
@@ -148,6 +151,13 @@ moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath
       toIndexPath:(NSIndexPath *)destinationIndexPath {
     [[BNRItemStore sharedStore] moveItemAtIndex:sourceIndexPath.row
                                         toIndex:destinationIndexPath.row];
+}
+
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row == [[[BNRItemStore sharedStore]allItems]count]) {
+        return NO;
+    }
+    return YES;
 }
 
 #pragma mark - UITableViewDelegate Instance Methods
