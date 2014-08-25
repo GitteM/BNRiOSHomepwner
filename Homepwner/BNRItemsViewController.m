@@ -10,7 +10,7 @@
 #import "BNRItemStore.h"
 #import "BNRItem.h"
 
-@interface BNRItemsViewController ()
+@interface BNRItemsViewController () <UITableViewDelegate>
 
 @property (nonatomic, strong) IBOutlet UIView *headerView;
 
@@ -148,6 +148,13 @@ moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath
       toIndexPath:(NSIndexPath *)destinationIndexPath {
     [[BNRItemStore sharedStore] moveItemAtIndex:sourceIndexPath.row
                                         toIndex:destinationIndexPath.row];
+}
+
+#pragma mark - UITableViewDelegate Instance Methods
+
+- (NSString *)tableView:(UITableView *)tableView
+titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return @"Remove";
 }
 
 @end
