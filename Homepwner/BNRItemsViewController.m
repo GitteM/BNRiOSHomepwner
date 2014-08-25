@@ -99,15 +99,18 @@
 
 #pragma mark - UITableViewDataSource Protocol Required Methods
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView *)tableView
+ numberOfRowsInSection:(NSInteger)section {
     return [[[BNRItemStore sharedStore]allItems]count];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView
+         cellForRowAtIndexPath:(NSIndexPath *)indexPath {
    
     // Get a new or recycled cell
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell"
-                                                            forIndexPath:indexPath];
+    UITableViewCell *cell =
+    [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell"
+                                    forIndexPath:indexPath];
     
     // Set the text on the cell with the description of item
     // that is at the nth index of items, where n = row this cell
@@ -140,5 +143,11 @@ commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
     }
 }
 
+- (void)tableView:(UITableView *)tableView
+moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath
+      toIndexPath:(NSIndexPath *)destinationIndexPath {
+    [[BNRItemStore sharedStore] moveItemAtIndex:sourceIndexPath.row
+                                        toIndex:destinationIndexPath.row];
+}
 
 @end
