@@ -19,8 +19,13 @@
     // Create a BNRItemsViewController
     BNRItemsViewController *itemsViewController = [[BNRItemsViewController alloc]init];
     
-    // place BNRItemsViewController's table view in the window hierarchy
-    self.window.rootViewController = itemsViewController;
+    // Create an instance UINavigationController
+    // It's stack only contains itemsViewController
+    UINavigationController *navigationController =
+    [[UINavigationController alloc]initWithRootViewController:itemsViewController];
+   
+    // Place the navigation controller's view in the window hierarchy
+    self.window.rootViewController = navigationController;
     
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
