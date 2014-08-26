@@ -96,7 +96,6 @@
     }
 }
 
-
 #pragma mark - UITableViewDataSource Protocol Required Methods
 
 - (NSInteger)tableView:(UITableView *)tableView
@@ -153,7 +152,16 @@ moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath
                                         toIndex:destinationIndexPath.row];
 }
 
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
+- (BOOL)tableView:(UITableView *)tableView
+canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row == [[[BNRItemStore sharedStore]allItems]count]) {
+        return NO;
+    }
+    return YES;
+}
+
+- (BOOL)tableView:(UITableView *)tableView
+canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == [[[BNRItemStore sharedStore]allItems]count]) {
         return NO;
     }
@@ -165,6 +173,16 @@ moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath
 - (NSString *)tableView:(UITableView *)tableView
 titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath {
     return @"Remove";
+}
+
+- (NSIndexPath *)tableView:(UITableView *)tableView
+targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)sourceIndexPath
+       toProposedIndexPath:(NSIndexPath *)proposedDestinationIndexPath {
+    if ([[[BNRItemStore sharedStore]allItems]count] > proposedDestinationIndexPath.row) {
+        return proposedDestinationIndexPath;
+    } else {
+        return sourceIndexPath;
+    }
 }
 
 @end
