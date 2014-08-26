@@ -9,6 +9,7 @@
 #import "BNRItemsViewController.h"
 #import "BNRItemStore.h"
 #import "BNRItem.h"
+#import "BNRDetailViewController.h"
 
 @interface BNRItemsViewController ()
 
@@ -32,7 +33,7 @@
 
 #pragma mark - Managing the View
 - (void)viewDidLoad {
-
+    
     [super viewDidLoad];
     
     [self.tableView registerClass:[UITableViewCell class]
@@ -40,6 +41,12 @@
     
     UIView *headerView = self.headerView;
     [self.tableView setTableHeaderView:headerView];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    
+    [super viewWillAppear:animated];
+    [self.tableView reloadData];
 }
 
 #pragma mark - Implement HeaderView
@@ -77,7 +84,7 @@
 }
 
 - (IBAction)toggleEditingMode:(id)sender {
-
+    
     if (self.isEditing) {
         
         // change title of the button to inform the user of state
@@ -92,7 +99,7 @@
         
         // enter editing mode
         [self setEditing:YES animated:YES];
-  
+        
     }
 }
 
@@ -106,7 +113,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-   
+    
     // Get a new or recycled cell
     UITableViewCell *cell =
     [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell"
@@ -128,8 +135,8 @@
 
 - (void)tableView:(UITableView *)tableView
 commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
- forRowAtIndexPath:(NSIndexPath *)indexPath {
-
+forRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     // if the tableview is asking to commit a delete command
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         NSArray *items = [[BNRItemStore sharedStore]allItems];
@@ -148,6 +155,23 @@ moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath
       toIndexPath:(NSIndexPath *)destinationIndexPath {
     [[BNRItemStore sharedStore] moveItemAtIndex:sourceIndexPath.row
                                         toIndex:destinationIndexPath.row];
+}
+
+#pragma mark - Managing Selections
+
+- (void)tableView:(UITableView *)tableView
+didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    BNRDetailViewController *detailViewController = [BNRDetailViewController new];
+    
+    NSArray *items = [[BNRItemStore sharedStore]allItems];
+    BNRItem *selectedItem = items[indexPath.row];
+    
+    detailViewController.item = selectedItem;
+    
+    // Push it onto the top of the navigation controller's stack
+    [self.navigationController pushViewController:detailViewController
+                                         animated:YES];
 }
 
 @end
