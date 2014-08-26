@@ -22,6 +22,8 @@
 		EC8474D1199950CE00963566 /* BNRItemsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC8474D0199950CE00963566 /* BNRItemsViewController.m */; };
 		EC8474D4199952E300963566 /* BNRItem.m in Sources */ = {isa = PBXBuildFile; fileRef = EC8474D2199952E300963566 /* BNRItem.m */; };
 		EC8474D9199954F400963566 /* BNRItemStore.m in Sources */ = {isa = PBXBuildFile; fileRef = EC8474D8199954F400963566 /* BNRItemStore.m */; };
+		EC867C4D19ACF2B900ED5DBF /* BNRDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC867C4B19ACF2B900ED5DBF /* BNRDetailViewController.m */; };
+		EC867C4E19ACF2B900ED5DBF /* BNRDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC867C4C19ACF2B900ED5DBF /* BNRDetailViewController.xib */; };
 		EC9D38AC19A89CEC00FE0D12 /* HeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC9D38AB19A89CEC00FE0D12 /* HeaderView.xib */; };
 /* End PBXBuildFile section */
 
@@ -58,6 +60,9 @@
 		EC8474D3199952E300963566 /* BNRItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRItem.h; sourceTree = "<group>"; };
 		EC8474D7199954F400963566 /* BNRItemStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRItemStore.h; sourceTree = "<group>"; };
 		EC8474D8199954F400963566 /* BNRItemStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRItemStore.m; sourceTree = "<group>"; };
+		EC867C4A19ACF2B900ED5DBF /* BNRDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRDetailViewController.h; sourceTree = "<group>"; };
+		EC867C4B19ACF2B900ED5DBF /* BNRDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRDetailViewController.m; sourceTree = "<group>"; };
+		EC867C4C19ACF2B900ED5DBF /* BNRDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BNRDetailViewController.xib; sourceTree = "<group>"; };
 		EC9D38AB19A89CEC00FE0D12 /* HeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeaderView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -169,6 +174,9 @@
 		EC8474D61999549A00963566 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				EC867C4A19ACF2B900ED5DBF /* BNRDetailViewController.h */,
+				EC867C4B19ACF2B900ED5DBF /* BNRDetailViewController.m */,
+				EC867C4C19ACF2B900ED5DBF /* BNRDetailViewController.xib */,
 				EC8474CF199950CE00963566 /* BNRItemsViewController.h */,
 				EC8474D0199950CE00963566 /* BNRItemsViewController.m */,
 				EC9D38AB19A89CEC00FE0D12 /* HeaderView.xib */,
@@ -254,6 +262,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC867C4E19ACF2B900ED5DBF /* BNRDetailViewController.xib in Resources */,
 				EC9D38AC19A89CEC00FE0D12 /* HeaderView.xib in Resources */,
 				EC8474AB19994C8300963566 /* InfoPlist.strings in Resources */,
 				EC8474B319994C8300963566 /* Images.xcassets in Resources */,
@@ -275,6 +284,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC867C4D19ACF2B900ED5DBF /* BNRDetailViewController.m in Sources */,
 				EC8474D9199954F400963566 /* BNRItemStore.m in Sources */,
 				EC8474D1199950CE00963566 /* BNRItemsViewController.m in Sources */,
 				EC8474D4199952E300963566 /* BNRItem.m in Sources */,
