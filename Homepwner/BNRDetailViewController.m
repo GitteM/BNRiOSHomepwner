@@ -47,6 +47,10 @@
     self.navigationItem.title = _item.itemName;
 }
 
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    [self.valueField resignFirstResponder];
+}
+
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     
