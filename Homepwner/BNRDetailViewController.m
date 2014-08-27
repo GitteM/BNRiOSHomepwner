@@ -8,6 +8,7 @@
 
 #import "BNRDetailViewController.h"
 #import "BNRItem.h"
+#import "BNRDateViewController.h"
 
 @interface BNRDetailViewController ()
 
@@ -62,6 +63,13 @@
     item.itemName = self.nameField.text;
     item.serialNumber = self.serialNumberField.text;
     item.valueInDollars = [self.valueField.text intValue];
+}
+
+- (IBAction)changeDate:(id)sender {
+    
+    BNRDateViewController *dateViewController = [BNRDateViewController new];
+    dateViewController.item = self.item;
+    [self.navigationController pushViewController:dateViewController animated:YES];
 }
 
 @end
