@@ -10,6 +10,7 @@
 #import "BNRItem.h"
 
 @interface BNRDetailViewController ()
+< UINavigationControllerDelegate, UIImagePickerControllerDelegate >
 
 @property (weak, nonatomic) IBOutlet UITextField *nameField;
 @property (weak, nonatomic) IBOutlet UITextField *serialNumberField;
@@ -61,7 +62,23 @@
     item.serialNumber = self.serialNumberField.text;
     item.valueInDollars = [self.valueField.text intValue];
 }
+
 - (IBAction)takePicture:(id)sender {
+    
+    UIImagePickerController *imagePickerController = [UIImagePickerController new];
+    
+    // If the device has a camera, take a picture. Otherwise select an image from the photo library
+    
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
+    } else {
+        imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    }
+    
+    imagePickerController.delegate = self;
+    
+    // place image picker on the screen
+    [self presentViewController:imagePickerController animated:YES completion:nil];
 }
 
 @end
