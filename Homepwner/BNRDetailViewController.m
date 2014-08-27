@@ -28,7 +28,7 @@
     BNRItem *item = self.item;
     self.nameField.text = item.itemName;
     self.serialNumberField.text = item.serialNumber;
-    self.valueField.text = [NSString stringWithFormat:@"$%d", item.valueInDollars];
+    self.valueField.text = [NSString stringWithFormat:@"%d", item.valueInDollars];
     
     // You need an NSDateFormatter that will turn a date into a simple date string
     static NSDateFormatter *dateFormatter = nil;
