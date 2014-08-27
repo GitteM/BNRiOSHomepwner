@@ -20,6 +20,8 @@
 
 @implementation BNRDetailViewController
 
+#pragma mark - Managing the View
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
@@ -38,6 +40,11 @@
     
     // Use filtered NSDate to set the date label contents
     self.dateLabel.text = [dateFormatter stringFromDate:item.dateCreated];
+}
+
+- (void)setItem:(BNRItem *)item {
+    _item = item;
+    self.navigationItem.title = _item.itemName;
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

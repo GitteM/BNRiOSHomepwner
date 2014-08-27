@@ -13,8 +13,6 @@
 
 @interface BNRItemsViewController ()
 
-@property (nonatomic, strong) IBOutlet UIView *headerView;
-
 @end
 
 @implementation BNRItemsViewController
@@ -23,7 +21,24 @@
 
 - (instancetype)init {
     self = [super initWithStyle:UITableViewStylePlain];
-    if (self) {}
+    if (self) {
+        
+        UINavigationItem *navItem = self.navigationItem;
+        navItem.title = @"Homepwoner";
+        
+        // Create a new bar button item that will send
+        // addNewItem to BNRItemsViewController
+        
+        UIBarButtonItem *bbi = [[UIBarButtonItem alloc]
+                                initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                                target:self
+                                action:@selector(addNewItem:)];
+        
+        // Set this bar button item as the right item in the navigation item
+        navItem.rightBarButtonItem = bbi;
+        
+        navItem.leftBarButtonItem = self.editButtonItem;
+    }
     return self;
 }
 
@@ -38,32 +53,12 @@
     
     [self.tableView registerClass:[UITableViewCell class]
            forCellReuseIdentifier:@"UITableViewCell"];
-    
-    UIView *headerView = self.headerView;
-    [self.tableView setTableHeaderView:headerView];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     
     [super viewWillAppear:animated];
     [self.tableView reloadData];
-}
-
-#pragma mark - Implement HeaderView
-
-- (UIView *)headerView {
-    
-    // if you not have loaded the header yet
-    
-    if (!_headerView) {
-        
-        // load HeaderView.xib
-        [[NSBundle mainBundle] loadNibNamed:@"HeaderView"
-                                      owner:self
-                                    options:nil];
-    }
-    
-    return _headerView;
 }
 
 #pragma mark - Header Methods
@@ -81,26 +76,6 @@
     // insert this new row into the table
     [self.tableView insertRowsAtIndexPaths:@[indexPath]
                           withRowAnimation:UITableViewRowAnimationTop];
-}
-
-- (IBAction)toggleEditingMode:(id)sender {
-    
-    if (self.isEditing) {
-        
-        // change title of the button to inform the user of state
-        [sender setTitle:@"Edit" forState:UIControlStateNormal];
-        
-        // turn off editing mode
-        [self setEditing:NO animated:YES];
-    } else {
-        
-        // change title of the button the inform the user of state
-        [sender setTitle:@"Done" forState:UIControlStateNormal];
-        
-        // enter editing mode
-        [self setEditing:YES animated:YES];
-        
-    }
 }
 
 

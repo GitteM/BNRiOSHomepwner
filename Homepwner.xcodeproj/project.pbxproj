@@ -24,7 +24,6 @@
 		EC8474D9199954F400963566 /* BNRItemStore.m in Sources */ = {isa = PBXBuildFile; fileRef = EC8474D8199954F400963566 /* BNRItemStore.m */; };
 		EC867C4D19ACF2B900ED5DBF /* BNRDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC867C4B19ACF2B900ED5DBF /* BNRDetailViewController.m */; };
 		EC867C4E19ACF2B900ED5DBF /* BNRDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC867C4C19ACF2B900ED5DBF /* BNRDetailViewController.xib */; };
-		EC9D38AC19A89CEC00FE0D12 /* HeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC9D38AB19A89CEC00FE0D12 /* HeaderView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,7 +62,6 @@
 		EC867C4A19ACF2B900ED5DBF /* BNRDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRDetailViewController.h; sourceTree = "<group>"; };
 		EC867C4B19ACF2B900ED5DBF /* BNRDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRDetailViewController.m; sourceTree = "<group>"; };
 		EC867C4C19ACF2B900ED5DBF /* BNRDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BNRDetailViewController.xib; sourceTree = "<group>"; };
-		EC9D38AB19A89CEC00FE0D12 /* HeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeaderView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,7 +177,6 @@
 				EC867C4C19ACF2B900ED5DBF /* BNRDetailViewController.xib */,
 				EC8474CF199950CE00963566 /* BNRItemsViewController.h */,
 				EC8474D0199950CE00963566 /* BNRItemsViewController.m */,
-				EC9D38AB19A89CEC00FE0D12 /* HeaderView.xib */,
 				EC8474AF19994C8300963566 /* BNRAppDelegate.h */,
 				EC8474B019994C8300963566 /* BNRAppDelegate.m */,
 			);
@@ -263,7 +260,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				EC867C4E19ACF2B900ED5DBF /* BNRDetailViewController.xib in Resources */,
-				EC9D38AC19A89CEC00FE0D12 /* HeaderView.xib in Resources */,
 				EC8474AB19994C8300963566 /* InfoPlist.strings in Resources */,
 				EC8474B319994C8300963566 /* Images.xcassets in Resources */,
 			);
