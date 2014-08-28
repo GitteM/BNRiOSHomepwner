@@ -33,6 +33,11 @@
         // set _dateCreated to the current date and time
         
         _dateCreated = [[NSDate alloc]init];
+        
+        // create a NSUUID Object and get it's string representation
+        NSUUID * uuid = [NSUUID new];
+        NSString *key = [uuid UUIDString];
+        _itemKey = key;
     }
     
     // Return the address of the newly initialized object
