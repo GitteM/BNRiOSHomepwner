@@ -34,7 +34,7 @@
         
         _dateCreated = [[NSDate alloc]init];
         
-        // create a NSUUID Object and get it's string representation
+        // create a NSUUID Object and get its string representation
         NSUUID * uuid = [NSUUID new];
         NSString *key = [uuid UUIDString];
         _itemKey = key;

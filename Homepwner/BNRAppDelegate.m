@@ -20,7 +20,7 @@
     BNRItemsViewController *itemsViewController = [[BNRItemsViewController alloc]init];
     
     // Create an instance UINavigationController
-    // It's stack only contains itemsViewController
+    // Its stack only contains itemsViewController
     UINavigationController *navigationController =
     [[UINavigationController alloc]initWithRootViewController:itemsViewController];
    

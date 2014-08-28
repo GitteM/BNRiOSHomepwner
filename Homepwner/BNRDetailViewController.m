@@ -44,6 +44,13 @@
     
     // Use filtered NSDate to set the date label contents
     self.dateLabel.text = [dateFormatter stringFromDate:item.dateCreated];
+    
+    NSString *imageKey = self.item.itemKey;
+    // Get the image for the image key from the image store
+    UIImage *imageToDisplay = [[BNRImageStore sharedStore]imageForKey:imageKey];
+    
+    // Use that image to put on to the screen in the image view
+    self.imageView.image = imageToDisplay;
 }
 
 - (void)setItem:(BNRItem *)item {
