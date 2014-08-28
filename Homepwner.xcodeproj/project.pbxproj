@@ -24,6 +24,7 @@
 		EC8474D9199954F400963566 /* BNRItemStore.m in Sources */ = {isa = PBXBuildFile; fileRef = EC8474D8199954F400963566 /* BNRItemStore.m */; };
 		EC867C4D19ACF2B900ED5DBF /* BNRDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC867C4B19ACF2B900ED5DBF /* BNRDetailViewController.m */; };
 		EC867C4E19ACF2B900ED5DBF /* BNRDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC867C4C19ACF2B900ED5DBF /* BNRDetailViewController.xib */; };
+		ECF0010D19AFA0C60025612B /* BNRImageStore.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF0010C19AFA0C60025612B /* BNRImageStore.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +63,8 @@
 		EC867C4A19ACF2B900ED5DBF /* BNRDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRDetailViewController.h; sourceTree = "<group>"; };
 		EC867C4B19ACF2B900ED5DBF /* BNRDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRDetailViewController.m; sourceTree = "<group>"; };
 		EC867C4C19ACF2B900ED5DBF /* BNRDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BNRDetailViewController.xib; sourceTree = "<group>"; };
+		ECF0010B19AFA0C60025612B /* BNRImageStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRImageStore.h; sourceTree = "<group>"; };
+		ECF0010C19AFA0C60025612B /* BNRImageStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRImageStore.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,10 +164,12 @@
 		EC8474D51999547900963566 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				EC8474D3199952E300963566 /* BNRItem.h */,
-				EC8474D2199952E300963566 /* BNRItem.m */,
+				ECF0010B19AFA0C60025612B /* BNRImageStore.h */,
+				ECF0010C19AFA0C60025612B /* BNRImageStore.m */,
 				EC8474D7199954F400963566 /* BNRItemStore.h */,
 				EC8474D8199954F400963566 /* BNRItemStore.m */,
+				EC8474D3199952E300963566 /* BNRItem.h */,
+				EC8474D2199952E300963566 /* BNRItem.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -282,6 +287,7 @@
 			files = (
 				EC867C4D19ACF2B900ED5DBF /* BNRDetailViewController.m in Sources */,
 				EC8474D9199954F400963566 /* BNRItemStore.m in Sources */,
+				ECF0010D19AFA0C60025612B /* BNRImageStore.m in Sources */,
 				EC8474D1199950CE00963566 /* BNRItemsViewController.m in Sources */,
 				EC8474D4199952E300963566 /* BNRItem.m in Sources */,
 				EC8474AD19994C8300963566 /* main.m in Sources */,
