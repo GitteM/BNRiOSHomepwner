@@ -11,7 +11,7 @@
 #import "BNRImageStore.h"
 
 @interface BNRDetailViewController ()
-< UINavigationControllerDelegate, UIImagePickerControllerDelegate >
+< UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate >
 
 @property (weak, nonatomic) IBOutlet UITextField *nameField;
 @property (weak, nonatomic) IBOutlet UITextField *serialNumberField;
@@ -56,6 +56,10 @@
 - (void)setItem:(BNRItem *)item {
     _item = item;
     self.navigationItem.title = _item.itemName;
+}
+
+- (IBAction)backgroundTapped:(id)sender {
+    [self.view endEditing:YES];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -105,6 +109,11 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
     // Take image picker off the screen NB
     [self dismissViewControllerAnimated:YES completion:nil];
     
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return YES;
 }
 
 @end
