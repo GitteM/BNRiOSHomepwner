@@ -9,9 +9,10 @@
 #import "BNRDetailViewController.h"
 #import "BNRItem.h"
 #import "BNRImageStore.h"
+#import <MobileCoreServices/MobileCoreServices.h>
 
 @interface BNRDetailViewController ()
-< UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate,UIAlertViewDelegate >
+< UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate, UIAlertViewDelegate >
 
 @property (weak, nonatomic) IBOutlet UITextField *nameField;
 @property (weak, nonatomic) IBOutlet UITextField *serialNumberField;
@@ -95,6 +96,14 @@
     
     UIImagePickerController *imagePickerController = [UIImagePickerController new];
     
+    NSArray *availableTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeCamera];
+    
+    if ([availableTypes containsObject:(__bridge NSString*)kUTTypeMovie]) {
+        [imagePickerController setMediaTypes:@[(__bridge NSString*)kUTTypeMovie]];
+    }
+    
+    imagePickerController.mediaTypes = availableTypes;
+    
     // If the device has a camera, take a picture. Otherwise select an image from the photo library
     
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
@@ -120,14 +129,25 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
     // UIImage *image = info[UIImagePickerControllerOriginalImage];
     
     // Get edited image form the info dictionary
-    UIImage *image = info[UIImagePickerControllerEditedImage];
+    // UIImage *image = info[UIImagePickerControllerEditedImage];
     
     // Store the image in the BNRImageStore with a UUID key
-    [[BNRImageStore sharedStore] setImage:image
-                                   forKey:self.item.itemKey];
+    // [[BNRImageStore sharedStore] setImage:image
+    //                               forKey:self.item.itemKey];
     
     // Put that image onto the screen in our UIImageView
-    self.imageView.image = image;
+    //self.imageView.image = image;
+        
+    NSURL *mediaURL = info[UIImagePickerControllerMediaURL];
+
+    // Make sure the device supports video
+    if (UIVideoAtPathIsCompatibleWithSavedPhotosAlbum([mediaURL path])) {
+    // save the video to the photo album
+        UISaveVideoAtPathToSavedPhotosAlbum([mediaURL path], nil, nil, nil);
+        
+        //remove the video from the temporary directory
+        [[NSFileManager defaultManager]removeItemAtPath:[mediaURL path] error:nil];
+    }
     
     // Take image picker off the screen NB
     [self dismissViewControllerAnimated:YES completion:nil];
