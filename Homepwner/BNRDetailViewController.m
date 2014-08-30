@@ -11,7 +11,7 @@
 #import "BNRImageStore.h"
 
 @interface BNRDetailViewController ()
-< UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate >
+< UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate,UIAlertViewDelegate >
 
 @property (weak, nonatomic) IBOutlet UITextField *nameField;
 @property (weak, nonatomic) IBOutlet UITextField *serialNumberField;
@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *trash;
 
 @end
 
@@ -51,15 +52,10 @@
     
     // Use that image to put on to the screen in the image view
     self.imageView.image = imageToDisplay;
-}
-
-- (void)setItem:(BNRItem *)item {
-    _item = item;
-    self.navigationItem.title = _item.itemName;
-}
-
-- (IBAction)backgroundTapped:(id)sender {
-    [self.view endEditing:YES];
+    
+    
+    // Enable the trash can only if there is an image attached to the item
+    self.trash.enabled = (imageToDisplay) ? YES : NO;
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -74,6 +70,26 @@
     item.serialNumber = self.serialNumberField.text;
     item.valueInDollars = [self.valueField.text intValue];
 }
+
+#pragma mark - Set Navigation bar title
+
+- (void)setItem:(BNRItem *)item {
+    _item = item;
+    self.navigationItem.title = _item.itemName;
+}
+
+#pragma mark - Resign first responder
+
+- (IBAction)backgroundTapped:(id)sender {
+    [self.view endEditing:YES];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return YES;
+}
+
+#pragma mark - Image processing
 
 - (IBAction)takePicture:(id)sender {
     
@@ -96,6 +112,7 @@
     [self presentViewController:imagePickerController animated:YES completion:nil];
 }
 
+
 - (void)imagePickerController:(UIImagePickerController *)picker
 didFinishPickingMediaWithInfo:(NSDictionary *)info {
     
@@ -111,15 +128,31 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
     
     // Put that image onto the screen in our UIImageView
     self.imageView.image = image;
-
+    
     // Take image picker off the screen NB
     [self dismissViewControllerAnimated:YES completion:nil];
     
 }
 
-- (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    [textField resignFirstResponder];
-    return YES;
+- (IBAction)removeImage:(id)sender {
+    
+    UIAlertView *alertView =
+    [[UIAlertView alloc] initWithTitle:@"Delete Image"
+                               message:@"Select OK to delete the image"
+                              delegate:self
+                     cancelButtonTitle:@"Cancel"
+                     otherButtonTitles:@"Ok", nil];
+    
+    [alertView show];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    
+    if (buttonIndex == 1) {
+        self.imageView.image = nil;
+        [[BNRImageStore sharedStore]deleteImageForKey:self.item.itemKey];
+        self.trash.enabled = NO;
+    }
 }
 
 @end
