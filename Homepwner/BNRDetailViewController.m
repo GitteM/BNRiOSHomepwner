@@ -99,6 +99,7 @@
     
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
         imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
+        imagePickerController.cameraOverlayView = [self crosshairOverlay];
     } else {
         imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     }
@@ -111,7 +112,6 @@
     // place image picker on the screen
     [self presentViewController:imagePickerController animated:YES completion:nil];
 }
-
 
 - (void)imagePickerController:(UIImagePickerController *)picker
 didFinishPickingMediaWithInfo:(NSDictionary *)info {
@@ -155,4 +155,23 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
     }
 }
 
+#pragma mark -  Camera overlay
+- (UIView *)crosshairOverlay {
+    UIImage * crosshair = [UIImage imageNamed:@"crosshair.png"];
+    
+    CGRect frame;
+    frame.origin.x = (self.view.frame.size.width - crosshair.size.width) / 2;
+    frame.origin.y = (self.view.frame.size.height - crosshair.size.height) / 2;
+    frame.size.width = crosshair.size.width;
+    frame.size.height = crosshair.size.height;
+    
+    UIView *overlay = [[UIView alloc]initWithFrame:frame];
+    overlay.backgroundColor = [UIColor colorWithPatternImage:crosshair];
+    overlay.layer.opaque = NO;
+    overlay.opaque = NO;
+    
+    return overlay;
+}
+
 @end
+

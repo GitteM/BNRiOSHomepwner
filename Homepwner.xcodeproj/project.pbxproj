@@ -25,6 +25,7 @@
 		EC867C4D19ACF2B900ED5DBF /* BNRDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC867C4B19ACF2B900ED5DBF /* BNRDetailViewController.m */; };
 		EC867C4E19ACF2B900ED5DBF /* BNRDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC867C4C19ACF2B900ED5DBF /* BNRDetailViewController.xib */; };
 		ECF0010D19AFA0C60025612B /* BNRImageStore.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF0010C19AFA0C60025612B /* BNRImageStore.m */; };
+		ECF0AA1E19B1DB86006B97D5 /* crosshair.png in Resources */ = {isa = PBXBuildFile; fileRef = ECF0AA1D19B1DB86006B97D5 /* crosshair.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,7 @@
 		EC867C4C19ACF2B900ED5DBF /* BNRDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BNRDetailViewController.xib; sourceTree = "<group>"; };
 		ECF0010B19AFA0C60025612B /* BNRImageStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRImageStore.h; sourceTree = "<group>"; };
 		ECF0010C19AFA0C60025612B /* BNRImageStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRImageStore.m; sourceTree = "<group>"; };
+		ECF0AA1D19B1DB86006B97D5 /* crosshair.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crosshair.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +137,7 @@
 		EC8474A719994C8300963566 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				ECF0AA1F19B1DB8E006B97D5 /* Images */,
 				EC8474A819994C8300963566 /* Homepwner-Info.plist */,
 				EC8474A919994C8300963566 /* InfoPlist.strings */,
 				EC8474AC19994C8300963566 /* main.m */,
@@ -186,6 +189,14 @@
 				EC8474B019994C8300963566 /* BNRAppDelegate.m */,
 			);
 			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		ECF0AA1F19B1DB8E006B97D5 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				ECF0AA1D19B1DB86006B97D5 /* crosshair.png */,
+			);
+			name = Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -266,6 +277,7 @@
 			files = (
 				EC867C4E19ACF2B900ED5DBF /* BNRDetailViewController.xib in Resources */,
 				EC8474AB19994C8300963566 /* InfoPlist.strings in Resources */,
+				ECF0AA1E19B1DB86006B97D5 /* crosshair.png in Resources */,
 				EC8474B319994C8300963566 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
